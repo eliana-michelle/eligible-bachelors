@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 <div class = "card-content">
-        <h1 class = "card-title">{{ bachelor.name }}</h1>
-        <h3>Net Worth: ${{ bachelor.net_worth }} </h3>
-        <p>Age: {{ bachelor.age }}</p>
-        <p>Location: {{ bachelor.location }}</p>
-        <p>Where'd He Get That Money? {{ bachelor.wealth_origin }}</p>
-        <p>Potential Dealbreaker? {{ bachelor.dealbreaker }}</p>
+        <h1>{{ bachelor.name }}</h1>
+        <h3>Net Worth: ${{ bachelor.net_worth|intcomma }} </h3>
+        <p><b>Age: </b>{{ bachelor.age }}</p>
+        <p><b>Location: </b>{{ bachelor.location }}</p>
+        <p><b>Where'd He Get That Money? </b>{{ bachelor.wealth_origin }}</p>
+        <p><b>Potential Dealbreaker? </b>{{ bachelor.dealbreaker }}</p>
 </div>
 
 {% endblock %}

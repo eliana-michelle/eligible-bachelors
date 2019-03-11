@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 <div class = container>
 <h2>Check Out These Bachelors</h2>
@@ -8,8 +10,9 @@
 <div class =  "card">
     <div class = "card-content">
         <h1 class = "card-title">{{ bachelor.name }}</h1>
-        <h3>Net Worth: ${{ bachelor.net_worth }} </h3>
-        <a href = "{%url 'detail' bachelor.id%}">Get More Info!</a>
+        <h6>Age: {{bachelor.age}}</h6>
+        <h3>Net Worth: ${{ bachelor.net_worth|intword}}</h3>
+        <a class = "right" href = "{%url 'detail' bachelor.id%}">Could he be the one?</a>
     </div>
     {% endfor %}
 </div>
