@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "card-content">
+        <h1 class = "card-title">{{ bachelor.name }}</h1>
+        <h3>Net Worth: ${{ bachelor.net_worth }} </h3>
+        <p>Age: {{ bachelor.age }}</p>
+        <p>Location: {{ bachelor.location }}</p>
+        <p>Where'd He Get That Money? {{ bachelor.wealth_origin }}</p>
+        <p>Potential Dealbreaker? {{ bachelor.dealbreaker }}</p>
+</div>
+
+{% endblock %}

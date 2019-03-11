@@ -1,3 +1,19 @@
 .nav-wrapper{
     background-color: #b5d7f6;
 }
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+
+.page-footer {
+    padding-top: 0;
+    text-align: right;
+    background-color: #b5d7f6;
+}

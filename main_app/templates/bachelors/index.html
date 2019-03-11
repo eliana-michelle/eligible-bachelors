@@ -2,22 +2,14 @@
 
 {% block content %}
 <div class = container>
-<h1>Check Out These Bachelors</h1>
+<h2>Check Out These Bachelors</h2>
 
 {% for bachelor in bachelors %}
 <div class =  "card">
-    <div class = "row">
-        <div class = 'col s6'>
-        <span class = "card-title">{{ bachelor.name }}</span>
-        <img class="circle responsive-img" src = '{{ bachelor.image }}'>
+    <div class = "card-content">
+        <h1 class = "card-title">{{ bachelor.name }}</h1>
         <h3>Net Worth: ${{ bachelor.net_worth }} </h3>
-        </div>
-        <div class = 'col s6'>
-        <p>Age: {{ bachelor.age }}</p>
-        <p>Location: {{ bachelor.location }}</p>
-        <p>Where'd He Get That Money? {{ bachelor.wealth_origin }}</p>
-        <p>Potential Dealbreaker? {{ bachelor.dealbreaker }}</p>
-        </div>
+        <a href = "{%url 'detail' bachelor.id%}">Get More Info!</a>
     </div>
     {% endfor %}
 </div>
