@@ -40,3 +40,8 @@ a {
 a:hover {
   color: #f929b9
 }
+
+.card {
+  margin: 10px;
+  padding-bottom: 20px;
+}
