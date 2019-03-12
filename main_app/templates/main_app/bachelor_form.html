@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object %}
+    <h2>Need to make some changes?</h2>
+{% else %}
+    <h2>Add A Bachelor</h2>
+    <p>If only getting him was as easy as adding his name to the list, huh?</p>
+{% endif %}
+
+<form action = "" method = "post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_p}}
+    </table>
+    <input type="submit" value="Get him girl!" class="btn">
+</form>
+
+{% endblock %}

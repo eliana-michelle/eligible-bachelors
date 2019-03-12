@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Bachelor
 
 # Create your views here.
@@ -16,3 +16,15 @@ def bachelors_index(request):
 def bachelors_detail(request, bachelor_id):
     bachelor = Bachelor.objects.get(id = bachelor_id)
     return render(request, 'bachelors/details.html', {'bachelor': bachelor})
+
+class BachelorCreate(CreateView):
+    model = Bachelor
+    fields = '__all__'
+
+class BachelorDelete(DeleteView):
+    model = Bachelor
+    success_url: '/bachelors/'
+
+class BachelorUpdate(UpdateView):
+    model = Bachelor
+    fields = '__all__'

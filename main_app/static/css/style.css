@@ -37,11 +37,34 @@ a {
   color: #f9c1e8;
 }
 
-a:hover {
-  color: #f929b9
+.btn {
+  border-radius: 4px;
+  font-family: 'Lobster Two', cursive;
+  font-size: 20px;
+  text-transform: none;
+  background-color: #f9c1e8;
+  margin-right: 10px;
+}
+
+a:hover, .btn:hover {
+  color: #f929b9;
+  background-color: white;
+}
+
+a:hover, .link:hover, .left:hover {
+  background-color: transparent;
 }
 
 .card {
   margin: 10px;
   padding-bottom: 20px;
+}
+
+form {
+  padding-bottom: 15px;
+}
+
+input, textarea, label {
+  font-family: 'Lobster Two', cursive;
+  font-size: 15px;
 }

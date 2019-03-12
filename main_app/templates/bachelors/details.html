@@ -10,6 +10,10 @@
         <p><b>Location: </b>{{ bachelor.location }}</p>
         <p><b>Where'd He Get That Money? </b>{{ bachelor.wealth_origin }}</p>
         <p><b>Potential Dealbreaker? </b>{{ bachelor.dealbreaker }}</p>
+        <div class="card-action">
+                <a class = "btn" href="{% url 'bachelor_update' bachelor.id %}">Edit</a>
+                <a class = "btn" href="{% url 'bachelor_delete' bachelor.id %}">Delete</a>
+        </div>
 </div>
 
 {% endblock %}
