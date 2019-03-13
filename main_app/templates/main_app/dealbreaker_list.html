@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Yikes! Some potential dealbreakers!!</h1>
+
+{% for dealbreaker in dealbreaker_list %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ dealbreaker.content }}</span>
+            {% if dealbreaker.bachelor_set.all %}
+                {% for bachelor in dealbreaker.bacheloer_set.all %}
+                <ul>
+                    <li> {{ bachelor.name }}  </li>
+                </ul>
+                {% endfor %}
+            {% endif %}
+            <a href="{% url 'dealbreaker_update' dealbreaker.id %}">Edit</a>
+            <a href="{% url 'dealbreaker_delete' dealbreaker.id %}">Delete</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

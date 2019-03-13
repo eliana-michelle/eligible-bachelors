@@ -9,10 +9,21 @@
 {% for bachelor in bachelors %}
 <div class =  "card">
     <div class = "card-content">
-        <h1 class = "card-title">{{ bachelor.name }}</h1>
-        <h6>Age: {{bachelor.age}}</h6>
-        <h3>Net Worth: ${{ bachelor.net_worth|intword}}</h3>
-        <a class = "right" href = "{%url 'detail' bachelor.id%}">Could he be the one?</a>
+    <div class = "row">
+        <div class = "col s4">
+        {% for photo in bachelor.photo_set.all%}
+        {% if forloop.last%}
+        <img class="responsive-img card-panel" src="{{photo.url}}">
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class = "col s8">
+            <h1 class = "card-title">{{ bachelor.name }}</h1>
+            <h6>Age: {{bachelor.age}}</h6>
+            <h3>Net Worth: ${{ bachelor.net_worth|intword}}</h3>
+            <a class = "right" href = "{%url 'detail' bachelor.id%}">Could he be the one?</a>
+        </div>
+    </div>
     </div>
 </div>
 {% endfor %}

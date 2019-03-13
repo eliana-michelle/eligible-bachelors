@@ -3,17 +3,126 @@
 {% load humanize %}
 
 {% block content %}
-<div class = "card-content">
+<div class = "center-align">
         <h1>{{ bachelor.name }}</h1>
         <h3>Net Worth: ${{ bachelor.net_worth|intcomma }} </h3>
+</div>
+
+        {% for photo in bachelor.photo_set.all %}
+        <div class = "row">
+                <div class = "col s4">
+                        <img class="responsive-img card-panel" src="{{photo.url}}">
+                </div>
+</div>
+        {% empty %}
+        <div class = "row">
+                <div class = "col s6">
+                        <div class="card-panel center-align">
+                                No Photos Uploaded
+                        </div>
+                </div>
+                <div class = "col s6">
+                <form action="{% url 'add_photo' bachelor.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                        {% csrf_token %}
+                        <input type="file" name="photo-file">
+                        <br><br>
+                        <input type="submit" class="btn" value="Upload Photo">
+                </form>
+        {% endfor %}
+        </div>
+        </div>
+        </div>
         <p><b>Age: </b>{{ bachelor.age }}</p>
         <p><b>Location: </b>{{ bachelor.location }}</p>
         <p><b>Where'd He Get That Money? </b>{{ bachelor.wealth_origin }}</p>
-        <p><b>Potential Dealbreaker? </b>{{ bachelor.dealbreaker }}</p>
         <div class="card-action">
-                <a class = "btn" href="{% url 'bachelor_update' bachelor.id %}">Edit</a>
-                <a class = "btn" href="{% url 'bachelor_delete' bachelor.id %}">Delete</a>
+                <a class = "btn right" href="{% url 'bachelor_update' bachelor.id %}">Edit</a>
+                <a class = "btn right" href="{% url 'bachelor_delete' bachelor.id %}">Delete</a>
         </div>
 </div>
-
+</div>
+<br><br>
+<div class = "row">
+        <div class = "col s6">
+        {% if bachelor.dealbreakers.count %}
+                <h5>Watch out for these dealbreakers!!</h5>
+                {% for dealbreaker in bachelor.dealbreakers.all %}
+                <ul>
+                        <li><a class = "btn" href="{% url 'delete_db' bachelor.id dealbreaker.id %}"> X </a> {{dealbreaker.content}}</li>
+                </ul>
+                {% endfor%}
+        {% else %}
+                <h5>No dealbreakers yet? Maybe he's perfect?</h5>
+                <h6>Though you know what they say about too good to be true...</h6>
+        {% endif %}
+        </div>
+        <div class = "col s4 offset-s2">
+                {% if dealbreakers %}
+                <h5 class = "center-align">Add a Dealbreaker?</h5>
+                {% for dealbreaker in dealbreakers.all %}
+                <div class="card">
+                        <div class="card-content">
+                                <p>{{dealbreaker.content}}</p>
+                        </div>
+                        <div class="card-action">
+                                <form action="{% url 'assoc_db' bachelor.id dealbreaker.id %}" method="post">
+                                {% csrf_token %}
+                                    <button type="submit" class="btn">Sounds like him!</button>
+                                </form>
+                        </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+                </div>
+        </div>
+</div>
+<div class = "row">
+<h5 class = "center-align">Are you his type? Check out these former flames!</h5>
+<br>
+<div class = "col s4 form">
+        <form  action="{% url 'add_prior_flame' bachelor.id %}" method="POST">  
+        {% csrf_token %}
+        <h6 class = "heading">Add a New Old Flame</h6>
+                {{ prior_flame_form.as_table }}
+                <input type="submit" class="btn" value="Bye Bye B****">
+        </form>
+</div>
+{% if bachelor.priorflame_set.all %}
+        <div class = "col s6 offset-s2">
+                <table>
+                        <thead>
+                                <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>How long did it last?</th>
+                                <th>When did it end?</th>
+                                </tr>
+                        </thead>
+              
+                        <tbody>
+                        {% for pf in bachelor.priorflame_set.all %}
+                                <td>{{pf.name}}</td>
+                                <td>{{pf.age}}</td>
+                                {% if pf.relationship_duration == 0%}
+                                        <td>Nothing to worry about. Not even a month!</td>
+                                {% else %}
+                                <td>{{pf.relationship_duration}} mo </td>
+                                <td>{{pf.breakup_date.month}}/{{pf.breakup_date.year}}</td>
+                                {% endif %}
+                        </tbody>
+                        {% endfor %}
+               </table>
+                     
+        </div>
+{% endif %}
+</div>
+<script>
+        var dateEl = document.getElementById('id_breakup_date');
+        M.Datepicker.init(dateEl, {
+                format: 'yyyy-mm-dd',
+                defaultDate: new Date(),
+                setDefaultDate: true,
+                autoClose: true
+        });
+</script>
 {% endblock %}

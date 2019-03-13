@@ -68,3 +68,28 @@ input, textarea, label {
   font-family: 'Lobster Two', cursive;
   font-size: 15px;
 }
+
+th, td {
+  padding: 15px 20px;
+}
+
+th {
+  border-bottom: 2px black solid;
+}
+
+th, .heading {
+  background-color: #f9c1e8;
+  text-align: center;
+}
+
+.heading {
+  padding: 10px;
+}
+
+.form, table {
+  border: 2px black solid;
+}
+
+#red-flag {
+  color: red
+}
