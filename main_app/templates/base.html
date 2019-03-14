@@ -21,10 +21,16 @@
                 </ul>
                 <ul class="right">
                     <li><a class = "link" href="/about">About</a></li>
+                    {% if user.is_authenticated %}
                     <li><a id = "red-flag" class = "link" href = "/dealbreakers">Dealbreakers!</a></li>
                     <li><a class = "link" href = "/dealbreakers/create">Add A Dealbreaker</a></li>
                     <li><a class = "link" href = "/bachelors/create">Add A Bachelor</a></li>
                     <li><a class = "link" href="/bachelors">View All Bachelors</a></li>
+                    <li><a class = "link" href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a class = "link" href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a class = "link" href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
